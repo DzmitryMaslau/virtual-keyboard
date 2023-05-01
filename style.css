@@ -13,24 +13,29 @@ color: brown;
 }
 
 
-.body-textarea {
+.textarea {
     display: block;
-    top: 300px;
+    top: 200px;
     margin: 0 auto;
     width: 70%;
-    height: 300px;
+    height: 200px;
     border: 2px solid #151076;
 }
 
 .keyboard {
     width: 70%;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px;
     background-color: rgb(135, 53, 53);
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
     user-select: none;
     transition: bottom 0.4s;
     height: 250px;
+}
+
+.keyboard .row {
+  clear: both;
+  width: 100%;
 }
 
 
@@ -71,6 +76,10 @@ color: brown;
 
 .active {
     background: orchid;
+}
+
+.k-key:hover {
+background: orchid;
 }
 
 .row1 .key:nth-child(14) {

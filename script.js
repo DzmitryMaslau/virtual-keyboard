@@ -1,8 +1,9 @@
+/* eslint-disable linebreak-style */
 const lowerEng = [['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
-  ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del'],
-  ['CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter'],
-  ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '↑', 'Shift'],
-  ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '←', '↓', '→', 'Ctrl']];
+['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del'],
+['CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter'],
+['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '↑', 'Shift'],
+['Ctrl', 'Win', 'Alt', ' ', 'Alt', '←', '↓', '→', 'Ctrl']];
 
 const upperEng = [['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'Backspace'],
   ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|', 'Del'],
@@ -20,7 +21,7 @@ const shiftCapsEng = [['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_
   ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '{', '}', '|', 'Del'],
   ['CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ':', '"', 'Enter'],
   ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '<', '>', '?', '↑', 'Shift'],
-  ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '←', '↓', '→', 'Ctrl']];
+  ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '←', '↓', '→', 'Ctrl']]; 
 
 const lowerRu = [['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
   ['Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'Del'],
@@ -40,13 +41,13 @@ const capitalRu = [['Ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-',
   ['Shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', '.', '↑', 'Shift'],
   ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '←', '↓', '→', 'Ctrl']];
 
-const shiftCapsRu = [['ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Backspace'],
+ const shiftCapsRu = [['ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Backspace'],
   ['Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '/', 'Del'],
   ['CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter'],
   ['Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', ',', '↑', 'Shift'],
-  ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '←', '↓', '→', 'Ctrl']];
+  ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '←', '↓', '→', 'Ctrl']]; 
 
-  const selectedLanguage = localStorage.getItem('lang');
+const selectedLanguage = localStorage.getItem('lang');
 
 if (!selectedLanguage) {
   localStorage.setItem('lang', 'en');
@@ -57,7 +58,6 @@ const heading = document.createElement('p');
 const textarea = document.createElement('textarea');
 const keyboard = document.createElement('div');
 
-
 container.classList.add('wrapper');
 heading.classList.add('title');
 textarea.classList.add('body-textarea', 'textarea');
@@ -67,7 +67,7 @@ textarea.cols = 5;
 textarea.setAttribute('autofocus', '');
 keyboard.classList.add('body-keyboard', 'keyboard');
 
-textarea.placeholder = 'Switch language: Alt';
+textarea.placeholder = 'Switch language: Alt or Ctrl';
 
 const row1 = document.createElement('div');
 const row2 = document.createElement('div');
@@ -86,16 +86,14 @@ container.append(heading, textarea, keyboard);
 heading.textContent = 'RSS Virtual keyboard Windows';
 keyboard.append(row1, row2, row3, row4, row5);
 
-
 function createKeys(keysNumber, rowNumber, arrNumber) {
-  for (let i = 0; i < keysNumber; i++) {
+  for (let i = 0; i < keysNumber; i += 1) {
     const key = document.createElement('div');
     key.classList.add('k-key', 'key');
 
-  // Switch language
+    // Switch language
     const keyEng = document.createElement('span');
     keyEng.classList.add('eng');
-
 
     const lowerCase = document.createElement('span');
     lowerCase.classList.add('lower-case');
@@ -113,14 +111,12 @@ function createKeys(keysNumber, rowNumber, arrNumber) {
     shiftCaps.classList.add('shift-caps', 'hidden');
     shiftCaps.textContent = shiftCapsEng[arrNumber][i];
 
-
     const keyRu = document.createElement('span');
     keyRu.classList.add('ru', 'hidden');
 
     const lowerCaseRu = document.createElement('span');
-  lowerCaseRu.classList.add('lower-case');
+    lowerCaseRu.classList.add('lower-case');
     lowerCaseRu.textContent = lowerRu[arrNumber][i];
-
 
     const upperCaseRu = document.createElement('span');
     upperCaseRu.classList.add('upper-case', 'hidden');
@@ -168,7 +164,7 @@ if (localStorage.getItem('lang') === 'en') {
   keysRu.forEach((e) => e.classList.remove('hidden'));
 }
 
-for (let i = 0; i < keyDown.length; i++) {
+for (let i = 0; i < keyDown.length; i += 1 ) {
   const key = keyDown[i];
   key.addEventListener('click', (event) => {
     if (event.target.textContent === 'Tab') {
@@ -187,6 +183,8 @@ for (let i = 0; i < keyDown.length; i++) {
       return null;
     }
     if (event.target.textContent === 'Ctrl') {
+      keysEng.forEach((e) => e.classList.toggle('hidden'));
+      keysRu.forEach((e) => e.classList.toggle('hidden'));
       return null;
     }
     if (event.target.textContent === 'Del') {
@@ -196,7 +194,6 @@ for (let i = 0; i < keyDown.length; i++) {
     if (event.target.textContent === 'Win') {
       return null;
     }
-
 
     if (event.target.textContent === 'Alt') {
       keysEng.forEach((e) => e.classList.toggle('hidden'));
@@ -215,7 +212,7 @@ for (let i = 0; i < keyDown.length; i++) {
   });
 }
 
-for (let i = 0; i < keyUp.length; i++) {
+for (let i = 0; i < keyUp.length; i += 1) {
   const key = keyUp[i];
   key.addEventListener('click', (event) => {
     if (event.target.textContent === 'Tab') {
@@ -230,6 +227,8 @@ for (let i = 0; i < keyUp.length; i++) {
       return null;
     }
     if (event.target.textContent === 'Ctrl') {
+      keysEng.forEach((e) => e.classList.toggle('hidden'));
+      keysRu.forEach((e) => e.classList.toggle('hidden'));
       return null;
     }
     if (event.target.textContent === 'Win') {
@@ -251,11 +250,11 @@ for (let i = 0; i < keyUp.length; i++) {
     }
     if (event.target.textContent === 'CapsLock') {
       row3.firstChild.classList.add('key-active');
-      for (let j = 0; j < keyUp.length; j++) {
+      for (let j = 0; j < keyUp.length; j += 1) {
         const keyCap = keyUp[j];
         keyCap.classList.remove('hidden');
       }
-      for (let k = 0; k < keyDown.length; k++) {
+      for (let k = 0; k < keyDown.length; k += 1) {
         const keysDown = keyDown[k];
         keysDown.classList.add('hidden');
       }
@@ -266,7 +265,7 @@ for (let i = 0; i < keyUp.length; i++) {
   });
 }
 
-for (let i = 0; i < keyCaps.length; i++) {
+for (let i = 0; i < keyCaps.length; i += 1) {
   const key = keyCaps[i];
   key.addEventListener('click', (event) => {
     if (event.target.textContent === 'Tab') {
@@ -281,6 +280,8 @@ for (let i = 0; i < keyCaps.length; i++) {
       return null;
     }
     if (event.target.textContent === 'Ctrl') {
+      keysEng.forEach((e) => e.classList.toggle('hidden'));
+      keysRu.forEach((e) => e.classList.toggle('hidden'));
       return null;
     }
 
@@ -291,11 +292,11 @@ for (let i = 0; i < keyCaps.length; i++) {
     }
     if (event.target.textContent === 'CapsLock') {
       row3.firstChild.classList.remove('key-active');
-      for (let j = 0; j < keyCaps.length; j++) {
+      for (let j = 0; j < keyCaps.length; j += 1) {
         const keysCaps = keyCaps[j];
         keysCaps.classList.add('hidden');
       }
-      for (let k = 0; k < keyDown.length; k++) {
+      for (let k = 0; k < keyDown.length; k += 1) {
         const keysDown = keyDown[k];
         keysDown.classList.remove('hidden');
       }
@@ -308,48 +309,48 @@ for (let i = 0; i < keyCaps.length; i++) {
 
 row4.firstChild.addEventListener('mousedown', () => {
   row4.firstChild.classList.add('key-active');
-  for (let j = 0; j < keyDown.length; j++) {
+  for (let j = 0; j < keyDown.length; j += 1) {
     const keysDown = keyDown[j];
     keysDown.classList.add('hidden');
   }
-  for (let k = 0; k < keyUp.length; k++) {
+  for (let k = 0; k < keyUp.length; k += 1) {
     const keysUp = keyUp[k];
     keysUp.classList.remove('hidden');
   }
 });
 row4.firstChild.addEventListener('mouseup', () => {
-  for (let j = 0; j < keyDown.length; j++) {
+  for (let j = 0; j < keyDown.length; j += 1) {
     const keysDown = keyDown[j];
     keysDown.classList.remove('hidden');
   }
-  for (let k = 0; k < keyUp.length; k++) {
+  for (let k = 0; k < keyUp.length; k += 1) {
     const keysUp = keyUp[k];
     keysUp.classList.add('hidden');
   }
 });
 row4.lastChild.addEventListener('mousedown', () => {
   row4.lastChild.classList.add('key-active');
-  for (let j = 0; j < keyDown.length; j++) {
+  for (let j = 0; j < keyDown.length; j += 1) {
     const keysDown = keyDown[j];
     keysDown.classList.add('hidden');
   }
-  for (let k = 0; k < keyUp.length; k++) {
+  for (let k = 0; k < keyUp.length; k += 1) {
     const keysUp = keyUp[k];
     keysUp.classList.remove('hidden');
   }
 });
 row4.lastChild.addEventListener('mouseup', () => {
-  for (let j = 0; j < keyDown.length; j++) {
+  for (let j = 0; j < keyDown.length; j += 1) {
     const keysDown = keyDown[j];
     keysDown.classList.remove('hidden');
   }
-  for (let k = 0; k < keyUp.length; k++) {
+  for (let k = 0; k < keyUp.length; k += 1) {
     const keysUp = keyUp[k];
     keysUp.classList.add('hidden');
   }
 });
 
-for (let i = 0; i < keys.length; i++) {
+for (let i = 0; i < keys.length; i += 1) {
   const key = keys[i];
   key.addEventListener('mouseover', () => {
     key.classList.add('key-hover');
@@ -363,7 +364,6 @@ for (let i = 0; i < keys.length; i++) {
     if (key.firstChild.firstChild.textContent === 'Shift') {
       return null;
     }
-
     return key.classList.remove('key-active');
   });
   key.addEventListener('mousedown', () => {
@@ -390,7 +390,7 @@ document.addEventListener('keydown', (event) => {
   event.preventDefault();
 
   // Switch language
-  if (event.key === 'Alt') {
+  if (event.key === 'Alt' || event.key === 'Ctrl') {
     if (localStorage.getItem('lang') === 'en') {
       keysEng.forEach((e) => e.classList.add('hidden'));
       keysRu.forEach((e) => e.classList.remove('hidden'));
@@ -407,7 +407,6 @@ document.addEventListener('keydown', (event) => {
       keyDown.forEach((e) => e.classList.add('hidden'));
       caps.forEach((e) => e.classList.add('hidden'));
       shiftCaps.forEach((e) => e.classList.remove('hidden'));
-
     }
     if (!event.changeState('CapsLock')) {
       row4.firstChild.classList.add('key-active');
@@ -419,7 +418,7 @@ document.addEventListener('keydown', (event) => {
   }
 
   if (event.key === 'CapsLock') {
-    for (let i = 0; i < keys.length; i++) {
+    for (let i = 0; i < keys.length; i += 1) {
       const key = keys[i];
       key.firstChild.firstChild.classList.toggle('hidden');
       key.firstChild.childNodes[2].classList.toggle('hidden');
@@ -443,7 +442,7 @@ document.addEventListener('keydown', (event) => {
     return;
   }
 
-  if (event.key === 'Meta') {
+  if (event.key === 'Win') {
     row5.childNodes[1].classList.add('key-active');
     return;
   }
@@ -503,7 +502,7 @@ document.addEventListener('keydown', (event) => {
     return;
   }
 
-  for (let i = 0; i < keys.length; i++) {
+  for (let i = 0; i < keys.length; i += 1) {
     const key = keys[i];
     if (event.key === key.firstChild.firstChild.textContent) {
       key.classList.add('key-active');
@@ -518,12 +517,11 @@ document.addEventListener('keydown', (event) => {
       return;
     }
 
-
     if (!keys[0].firstChild.childNodes[1].classList.contains('hidden')) {
       if (event.key === 'CapsLock') {
         return;
       }
-      for (let i = 0; i < keys.length; i++) {
+      for (let i = 0; i < keys.length; i += 1) {
         const key = keys[i];
         if (key.firstChild.childNodes[0].textContent === event.key
         || key.firstChild.childNodes[1].textContent === event.key) {
@@ -533,9 +531,8 @@ document.addEventListener('keydown', (event) => {
       return;
     }
 
-
     if (!keys[0].firstChild.childNodes[2].classList.contains('hidden')) {
-      for (let i = 0; i < keys.length; i++) {
+      for (let i = 0; i < keys.length; i += 1) {
         const key = keys[i];
         if (key.firstChild.firstChild.textContent === event.key
         || key.firstChild.childNodes[2].textContent === event.key) {
@@ -548,7 +545,7 @@ document.addEventListener('keydown', (event) => {
   }
 
   if (keys[0].firstChild.classList.contains('hidden')) {
-    for (let i = 0; i < keys.length; i++) {
+    for (let i = 0; i < keys.length; i += 1) {
       const key = keys[i];
       if (keys[0].lastChild.childNodes[1].classList.contains('hidden') && keys[0].lastChild.childNodes[2].classList.contains('hidden')) {
         if (event.key === 'CapsLock') {
@@ -583,7 +580,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener('keyup', (event) => {
-  for (let i = 0; i < keys.length; i++) {
+  for (let i = 0; i < keys.length; i += 1) {
     const key = keys[i];
     if (event.key === key.firstChild.firstChild.textContent) {
       key.classList.remove('key-active');
@@ -623,7 +620,7 @@ document.addEventListener('keyup', (event) => {
       return;
     }
 
-    if (event.key === 'Meta') {
+    if (event.key === 'Win') {
       row5.childNodes[1].classList.remove('key-active');
     }
 
