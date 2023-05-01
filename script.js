@@ -62,10 +62,12 @@ container.classList.add('wrapper');
 heading.classList.add('title');
 textarea.classList.add('body-textarea', 'textarea');
 textarea.id = 'textarea';
-textarea.rows = 50;
+textarea.rows = 40;
 textarea.cols = 5;
 textarea.setAttribute('autofocus', '');
 keyboard.classList.add('body-keyboard', 'keyboard');
+
+textarea.placeholder = 'Switch language: Alt';
 
 const row1 = document.createElement('div');
 const row2 = document.createElement('div');
@@ -81,7 +83,7 @@ row5.classList.add('keyboard-row', 'row', 'row5');
 
 document.body.append(container);
 container.append(heading, textarea, keyboard);
-heading.textContent = 'RSS Виртуальная клавиатура';
+heading.textContent = 'RSS Virtual keyboard Windows';
 keyboard.append(row1, row2, row3, row4, row5);
 
 
@@ -90,7 +92,7 @@ function createKeys(keysNumber, rowNumber, arrNumber) {
     const key = document.createElement('div');
     key.classList.add('k-key', 'key');
 
-  // Раскладка
+  // Switch language
     const keyEng = document.createElement('span');
     keyEng.classList.add('eng');
 
@@ -106,8 +108,9 @@ function createKeys(keysNumber, rowNumber, arrNumber) {
     const caps = document.createElement('span');
     caps.classList.add('caps', 'hidden');
     caps.textContent = capsEng[arrNumber][i];
+
     const shiftCaps = document.createElement('span');
-    shiftCaps.classList.add('shiftCaps', 'hidden');
+    shiftCaps.classList.add('shift-caps', 'hidden');
     shiftCaps.textContent = shiftCapsEng[arrNumber][i];
 
 
@@ -220,7 +223,7 @@ for (let i = 0; i < keyUp.length; i++) {
       return null;
     }
     if (event.target.textContent === 'Backspace') {
-      textArea.value = textarea.value.slice(0, -1);
+      textarea.value = textarea.value.slice(0, -1);
       return null;
     }
     if (event.target.textContent === 'Shift') {
@@ -248,13 +251,13 @@ for (let i = 0; i < keyUp.length; i++) {
     }
     if (event.target.textContent === 'CapsLock') {
       row3.firstChild.classList.add('key-active');
-      for (let j = 0; j < keyCaps.length; j++) {
-        const keyCaps = keysCaps[j];
-        keyCaps.classList.remove('hidden');
+      for (let j = 0; j < keyUp.length; j++) {
+        const keyCap = keyUp[j];
+        keyCap.classList.remove('hidden');
       }
       for (let k = 0; k < keyDown.length; k++) {
-        const keyDown = keyDown[k];
-        keyDown.classList.add('hidden');
+        const keysDown = keyDown[k];
+        keysDown.classList.add('hidden');
       }
       return null;
     }
@@ -289,12 +292,12 @@ for (let i = 0; i < keyCaps.length; i++) {
     if (event.target.textContent === 'CapsLock') {
       row3.firstChild.classList.remove('key-active');
       for (let j = 0; j < keyCaps.length; j++) {
-        const keyCaps = keyCaps[j];
-        keyCaps.classList.add('hidden');
+        const keysCaps = keyCaps[j];
+        keysCaps.classList.add('hidden');
       }
       for (let k = 0; k < keyDown.length; k++) {
-        const keyDown = keyDown[k];
-        keyDown.classList.remove('hidden');
+        const keysDown = keyDown[k];
+        keysDown.classList.remove('hidden');
       }
       return null;
     }
@@ -306,43 +309,43 @@ for (let i = 0; i < keyCaps.length; i++) {
 row4.firstChild.addEventListener('mousedown', () => {
   row4.firstChild.classList.add('key-active');
   for (let j = 0; j < keyDown.length; j++) {
-    const keyDown = keyDown[j];
-    keyDown.classList.add('hidden');
+    const keysDown = keyDown[j];
+    keysDown.classList.add('hidden');
   }
   for (let k = 0; k < keyUp.length; k++) {
-    const keyUp = keyUp[k];
-    keyUp.classList.remove('hidden');
+    const keysUp = keyUp[k];
+    keysUp.classList.remove('hidden');
   }
 });
 row4.firstChild.addEventListener('mouseup', () => {
   for (let j = 0; j < keyDown.length; j++) {
-    const keyDown = keyDown[j];
-    keyDown.classList.remove('hidden');
+    const keysDown = keyDown[j];
+    keysDown.classList.remove('hidden');
   }
   for (let k = 0; k < keyUp.length; k++) {
-    const keyUp = keyUp[k];
-    keyUp.classList.add('hidden');
+    const keysUp = keyUp[k];
+    keysUp.classList.add('hidden');
   }
 });
 row4.lastChild.addEventListener('mousedown', () => {
   row4.lastChild.classList.add('key-active');
   for (let j = 0; j < keyDown.length; j++) {
-    const keyDown = keyDown[j];
-    keyDown.classList.add('hidden');
+    const keysDown = keyDown[j];
+    keysDown.classList.add('hidden');
   }
   for (let k = 0; k < keyUp.length; k++) {
-    const keyUp = keyUp[k];
-    keyUp.classList.remove('hidden');
+    const keysUp = keyUp[k];
+    keysUp.classList.remove('hidden');
   }
 });
 row4.lastChild.addEventListener('mouseup', () => {
   for (let j = 0; j < keyDown.length; j++) {
-    const keyDown = keyDown[j];
-    keyDown.classList.remove('hidden');
+    const keysDown = keyDown[j];
+    keysDown.classList.remove('hidden');
   }
   for (let k = 0; k < keyUp.length; k++) {
-    const keyUp = keyUp[k];
-    keyUp.classList.add('hidden');
+    const keysUp = keyUp[k];
+    keysUp.classList.add('hidden');
   }
 });
 
@@ -386,7 +389,7 @@ for (let i = 0; i < keys.length; i++) {
 document.addEventListener('keydown', (event) => {
   event.preventDefault();
 
-  // Переключение языка
+  // Switch language
   if (event.key === 'Alt') {
     if (localStorage.getItem('lang') === 'en') {
       keysEng.forEach((e) => e.classList.add('hidden'));
@@ -547,7 +550,6 @@ document.addEventListener('keydown', (event) => {
   if (keys[0].firstChild.classList.contains('hidden')) {
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
-      
       if (keys[0].lastChild.childNodes[1].classList.contains('hidden') && keys[0].lastChild.childNodes[2].classList.contains('hidden')) {
         if (event.key === 'CapsLock') {
           return;
