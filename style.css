@@ -47,7 +47,7 @@ color: brown;
 }
 
 @media (max-width: 1000px) {
-.keyboard. .row: {
+.keyboard .row {
 margin: 0 auto;
 }
 
