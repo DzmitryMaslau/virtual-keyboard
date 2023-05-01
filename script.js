@@ -67,7 +67,7 @@ textarea.cols = 5;
 textarea.setAttribute('autofocus', '');
 keyboard.classList.add('body-keyboard', 'keyboard');
 
-textarea.placeholder = 'Switch language: Alt or Ctrl';
+textarea.placeholder = 'Switch language: Alt';
 
 const row1 = document.createElement('div');
 const row2 = document.createElement('div');
